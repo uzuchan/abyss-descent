@@ -6,7 +6,9 @@
 > 設計（要件定義 / ページ構成 / コンポーネント設計 / ディレクトリ構成）は **[DESIGN.md](./DESIGN.md)** を参照。
 
 ## Demo
-スクロール降下のデモ録画 → **[demo_mp4/深淵探窟 — Abyss.mp4](demo_mp4/9.%20%E6%B7%B1%E6%B7%B5%E6%8E%A2%E7%AA%9F%20%E2%80%94%20Abyss.mp4)**
+![深淵探窟 — スクロール降下デモ](demo_mp4/abyss-demo.gif)
+
+フル画質（mp4）→ **[demo_mp4/深淵探窟 — Abyss.mp4](demo_mp4/9.%20%E6%B7%B1%E6%B7%B5%E6%8E%A2%E7%AA%9F%20%E2%80%94%20Abyss.mp4)**
 
 ## 技術スタック
 Next.js (App Router) ・ TypeScript ・ React Three Fiber / Three.js ・ GSAP ・ Lenis ・ zustand
