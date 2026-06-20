@@ -19,6 +19,9 @@ my_idea.md
 
 # デモ動画の元データ（GIF 生成元・ローカル保持。リポジトリは GIF のみ）
 demo_mp4/*.mp4
+
+# 開発用スクショ（ローカル確認用）
+tools/screenshots/
 next-env.d.ts
 
 # debug
