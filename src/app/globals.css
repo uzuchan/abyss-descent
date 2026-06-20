@@ -7,11 +7,15 @@
   --font-num: "Cormorant Garamond", "Cormorant", Didot, "Hoefler Text",
     Garamond, "Times New Roman", serif;
 
-  --ink: rgba(245, 242, 234, 0.92);
-  --ink-soft: rgba(245, 242, 234, 0.6);
-  --ink-faint: rgba(245, 242, 234, 0.32);
-  --line: rgba(245, 242, 234, 0.28);
-  --shadow: 0 1px 10px rgba(0, 0, 0, 0.5);
+  /* InkController が深度で更新する。明るい地上では暗い文字、暗い深部では明るい文字。 */
+  --ink-rgb: 245, 242, 234;
+  --halo-rgb: 0, 0, 0;
+
+  --ink: rgba(var(--ink-rgb), 0.92);
+  --ink-soft: rgba(var(--ink-rgb), 0.6);
+  --ink-faint: rgba(var(--ink-rgb), 0.32);
+  --line: rgba(var(--ink-rgb), 0.28);
+  --shadow: 0 1px 12px rgba(var(--halo-rgb), 0.55);
 
   --ease: cubic-bezier(0.22, 1, 0.36, 1);
 }

@@ -25,6 +25,9 @@ export interface Layer {
   ambientIntensity: number;
   accent: string; // アクセント点光源 / 発光色
   spore: string; // 粒子色
+  wall: string; // 縦穴の壁の色（明→暗の階調をここで作る）
+  ink: [number, number, number]; // UI 文字色（明るい層では暗く、暗い層では明るく）
+  halo: [number, number, number]; // 文字の縁取り（ink の反対トーン）
 }
 
 export const LAYERS: Layer[] = [
@@ -36,11 +39,14 @@ export const LAYERS: Layer[] = [
     end: 0.1,
     background: '#dfe6ea',
     fog: '#e7edf0',
-    fogDensity: 0.02,
+    fogDensity: 0.022,
     ambient: '#f3f6f8',
-    ambientIntensity: 0.9,
+    ambientIntensity: 0.95,
     accent: '#bcd2dc',
     spore: '#ffffff',
+    wall: '#aebcc4',
+    ink: [44, 50, 56],
+    halo: [236, 241, 245],
   },
   {
     id: 'forest',
@@ -55,6 +61,9 @@ export const LAYERS: Layer[] = [
     ambientIntensity: 0.7,
     accent: '#a8f0c8',
     spore: '#d6ffe8',
+    wall: '#3f6052',
+    ink: [238, 245, 240],
+    halo: [10, 24, 18],
   },
   {
     id: 'creatures',
@@ -69,6 +78,9 @@ export const LAYERS: Layer[] = [
     ambientIntensity: 0.55,
     accent: '#c9b8ff',
     spore: '#d8c9ff',
+    wall: '#33304e',
+    ink: [240, 236, 250],
+    halo: [12, 10, 22],
   },
   {
     id: 'ruins',
@@ -83,6 +95,9 @@ export const LAYERS: Layer[] = [
     ambientIntensity: 0.45,
     accent: '#ffd49a',
     spore: '#ffe7c2',
+    wall: '#2c2718',
+    ink: [245, 240, 230],
+    halo: [22, 17, 9],
   },
   {
     id: 'deep',
@@ -97,6 +112,9 @@ export const LAYERS: Layer[] = [
     ambientIntensity: 0.35,
     accent: '#6fd6ff',
     spore: '#9fe6ff',
+    wall: '#0e131f',
+    ink: [225, 240, 250],
+    halo: [4, 8, 14],
   },
   {
     id: 'unknown',
@@ -111,6 +129,9 @@ export const LAYERS: Layer[] = [
     ambientIntensity: 0.25,
     accent: '#ff5fa2',
     spore: '#ff9ccb',
+    wall: '#040406',
+    ink: [250, 235, 244],
+    halo: [4, 4, 6],
   },
 ];
 
@@ -126,3 +147,10 @@ export const layerIndexForProgress = (p: number): number => {
 /** progress に対応する層 */
 export const layerForProgress = (p: number): Layer =>
   LAYERS[layerIndexForProgress(p)];
+
+/** 隣接2層の補間係数 { i, t }（描画ループでの色補間用） */
+export const layerBlend = (progress: number): { i: number; t: number } => {
+  const p = clamp(progress) * (LAYERS.length - 1);
+  const i = Math.min(Math.floor(p), LAYERS.length - 2);
+  return { i, t: p - i };
+};

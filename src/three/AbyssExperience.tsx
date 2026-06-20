@@ -5,6 +5,7 @@ import { useReducedMotion } from '@/lib/useReducedMotion';
 import { useScrollProgress } from '@/lib/useScrollProgress';
 import { useAmbientDrone } from '@/lib/useAmbientDrone';
 import ScrollTrack from '@/components/ScrollTrack';
+import InkController from '@/components/InkController';
 import Intro from '@/components/Intro';
 import Fieldbook from '@/components/Fieldbook';
 import DepthHUD from '@/components/DepthHUD';
@@ -26,6 +27,9 @@ export default function AbyssExperience() {
       <div className="canvas-fixed">
         <AbyssCanvas />
       </div>
+
+      {/* UI 文字色を深度で適応させる（DOM 副作用のみ） */}
+      <InkController />
 
       {/* スクロール量を生む透明トラック */}
       <ScrollTrack />
